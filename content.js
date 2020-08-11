@@ -32,16 +32,12 @@ const observerCallback = (mutations, observer) => mutations.forEach((mutation) =
             const status = stats.querySelector("tr:nth-child(2) > td").innerText
             const due = stats.querySelector("tr:nth-child(5) > td").innerText
             const submitted = stats.querySelector("tr:nth-child(7) > td").innerText
-            
-            const multiplierInput = stats.querySelector("tr:nth-child(4) > td > div > div:nth-child(2) > input")
 
             const dueDate = getDateFromString(due)
             const submittedDate = getDateFromString(submitted)
             
             const difference = ((submittedDate - dueDate) / 1000) / 3600
 
-            console.log(difference)
-            
             let multiplier
             let headText
             let toastStatus
@@ -94,9 +90,31 @@ const observerCallback = (mutations, observer) => mutations.forEach((mutation) =
                 })
             }
 
-            multiplierInput.value = multiplier
-
             document.getElementsByClassName("navbar-header")[0].innerHTML += toast(toastStatus, multiplier, headText, toastMessage)
+    
+            const injectedScript = document.createElement('script')
+            injectedScript.innerHTML = `
+                function setNativeValue(element, value) {
+                    const valueSetter = Object.getOwnPropertyDescriptor(element, 'value').set;
+                    const prototype = Object.getPrototypeOf(element);
+                    const prototypeValueSetter = Object.getOwnPropertyDescriptor(prototype, 'value').set;
+                    
+                    if (valueSetter && valueSetter !== prototypeValueSetter) {
+                        prototypeValueSetter.call(element, value);
+                    } else {
+                        valueSetter.call(element, value);
+                    }
+                }
+                
+                const stats = document.querySelector("#course-assessment-submission > div:nth-child(3) > div > div:nth-child(2) > div > div > div:nth-child(1) > div > div > div:nth-child(2) > table > tbody")        
+                const multiplierInput = stats.querySelector("tr:nth-child(4) > td > div > div:nth-child(2) > input")
+                
+                setNativeValue(multiplierInput, ${multiplier});
+                multiplierInput.dispatchEvent(new Event('input', { bubbles: true }));
+            `
+            
+            injectedScript.onload = () => { this.remove() }
+            (document.head || document.documentElement).appendChild(injectedScript);
             
             applied = true
             observer.disconnect()
