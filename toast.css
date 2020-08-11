@@ -1,0 +1,112 @@
+.gras-toast {
+    font-family: Roboto, sans-serif;
+    border-radius: 100rem;
+    height: 30px;
+    margin: 10px 0;
+    padding: 0.6rem 1.5rem;
+    user-select: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.gras-toast h1 {
+    margin: 0;
+    font-size: 11pt;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 600;
+}
+
+.gras-toast p {
+    margin: 0 0 0 10pt;
+    font-size: 11pt;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.gras-toast.gras-late {
+    background-color: #FC6471;
+    -webkit-box-shadow: 0px 11px 32px -11px #FC6471; 
+    box-shadow: 0px 11px 32px -11px #FC6471;
+}
+
+.gras-toast.gras-moderate {
+    background-color: #F5D547;
+    -webkit-box-shadow: 0px 11px 32px -11px #F5D547; 
+    box-shadow: 0px 11px 32px -11px #F5D547;
+}
+
+.gras-toast.gras-ontime {
+    background-color: #61E786;
+    -webkit-box-shadow: 0px 11px 32px -11px #61E786; 
+    box-shadow: 0px 11px 32px -11px #61E786;
+}
+
+.gras-toast.gras-graded {
+    background-color: #52AEF4;
+    -webkit-box-shadow: 0px 11px 32px -11px #52AEF4; 
+    box-shadow: 0px 11px 32px -11px #52AEF4;
+}
+
+.gras-toast.gras-oneday {
+    background-color: #5F30C5;
+    -webkit-box-shadow: 0px 11px 32px -11px #5F30C5; 
+    box-shadow: 0px 11px 32px -11px #5F30C5;
+}
+
+.gras-toast.gras-plagiarised {
+    background-color: #000022;
+    -webkit-box-shadow: 0px 11px 32px -11px #000022; 
+    box-shadow: 0px 11px 32px -11px #000022;
+}
+
+.gras-toast.gras-overriden {
+    background-color: #2A9D8F;
+    -webkit-box-shadow: 0px 11px 32px -11px #2A9D8F; 
+    box-shadow: 0px 11px 32px -11px #2A9D8F;
+}
+
+.gras-toast.gras-oneday *, .gras-toast.gras-overriden *, .gras-toast.gras-plagiarised * {
+    color: white;
+}
+
+@media only screen and (max-width: 994px) {
+    .gras-toast p {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 829px) {
+    .gras-toast p {
+        display: block;
+        margin: 0;
+    }
+
+    .gras-toast h1 {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 798px) {
+    .gras-toast p {
+        display: none;
+    }
+
+    .gras-toast {
+        width: 30px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .gras-toast p {
+        display: none;
+    }
+
+    .gras-toast h1 {
+        display: block;
+    }
+
+    .gras-toast {
+        width: fit-content;
+    }
+}
