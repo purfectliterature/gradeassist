@@ -1,7 +1,7 @@
 {
 "manifest_version": 2,
     "name": "GradeAssist for Coursemology",
-    "description": "Automatically adjusts students' EXP multiplier. Made with love by Phillmont",
+    "description": "Automatically adjusts students' EXP multiplier. Made with love by Phillmont.",
     "version": "1.0",
     "content_scripts": [{
         "js": ["content.js"],
